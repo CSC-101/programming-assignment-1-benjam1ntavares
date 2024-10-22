@@ -167,3 +167,4 @@ class Employee:
                 type(other) == Employee and
                 self.name == other.name and
                 self.pay_rate == other.pay_rate)
+

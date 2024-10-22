@@ -86,9 +86,44 @@ def books_by_author(author:str, books:list[data.Book]) -> list[data.Book]:
 
 
 
-    # Part 7
+# Part 7
+########################################################################################################################
+# the circle_bound function will take the input of a rectangle object as defined in data.py, it will then calculate the
+# center point of this rectangle, and the minimum radius required to enclose this rectangle, using these parameters it
+# will return a Circle object (defined in data.py), that will enclose the rectangle
 
+def circle_bound(inner_rect:data.Rectangle) -> data.Circle:
+    y_height = inner_rect.top_left.y - inner_rect.bottom_right.y
+    x_width = inner_rect.top_left.x - inner_rect.bottom_right.x
+    center_x = inner_rect.top_left.x + abs(x_width) // 2
+    center_y = inner_rect.bottom_right.y + abs(y_height) // 2
+    center_point = data.Point(center_x,center_y)
+    if abs(x_width) > abs(y_height):
+        radius = abs(x_width) // 2
+        return data.Circle(center_point,radius)
+    else:
+        radius = abs(y_height) // 2
+        return data.Circle(center_point, radius)
 
 # Part 8
+########################################################################################################################
+# function below_pay_average will take one parameter, a list of "Employee" objects as defined in data.py. the function
+# use the attributes of the employee class to compute the average pay of the employees and then create a list of
+# employees that are below the average pay
+
+def below_pay_average(employees:list[data.Employee]) -> list[str]:
+    payRates = []
+    employees_below_avg = []
+    for employee in employees:
+        payRates.append(employee.pay_rate)
+    for employee in employees:
+        avg_payrate = sum(payRates)/len(employees)
+        if employee.pay_rate < avg_payrate:
+            employees_below_avg.append(employee.name)
+    return employees_below_avg
+
+
+
+
 
 

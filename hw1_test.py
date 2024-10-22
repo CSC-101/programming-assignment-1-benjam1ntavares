@@ -158,13 +158,48 @@ class TestCases(unittest.TestCase):
 
 
 
-    # Part 7
+# Part 7
+#######################################################################################################################
+    # Test inner circle
+    # test to create a circle about the origin
+    def test_circle_bound1(self):
+        function_input = data.Rectangle(data.Point(-1,1), data.Point(1, -1))
+        expected = data.Circle(data.Point(0, 0), 1)
+        actual = hw1.circle_bound(function_input)
+        self.assertEqual(actual, expected)
 
+    # test to make a circle in the negative quadrant
+    def test_circle_bound2(self):
+        function_input = data.Rectangle(data.Point(-4,0), data.Point(0, -4))
+        expected = data.Circle(data.Point(-2, -2), 2)
+        actual = hw1.circle_bound(function_input)
+        self.assertEqual(actual,expected)
 
-    # Part 8
+    def test_circle_bound3(self):
+        function_input = data.Rectangle(data.Point(-4,-4), data.Point(0, -8))
+        expected = data.Circle(data.Point(-2, -6), 2)
+        actual = hw1.circle_bound(function_input)
+        self.assertEqual(actual,expected)
 
+# Part 8
+#######################################################################################################################
+    # test below_pay average with arbitrary payrates
+    def test_below_pay_average1(self):
+        function_input = [data.Employee('john', 100), data.Employee('james', 100),
+                          data.Employee('will', 100), data.Employee('bob', 100),
+                          data.Employee('george', 44), data.Employee('joey', 32)]
+        expected = ['george', 'joey']
+        actual = hw1.below_pay_average(function_input)
+        self.assertEqual(actual,expected)
 
-
+    # test with more arbitrary numbers
+    def test_below_pay_average2(self):
+        function_input = [data.Employee('john', 0), data.Employee('james', 0),
+                          data.Employee('will', 0), data.Employee('bob', 0),
+                          data.Employee('george', 4), data.Employee('joey', 32)]
+        expected = ['john', 'james','will','bob','george']
+        actual = hw1.below_pay_average(function_input)
+        self.assertEqual(actual,expected)
 
 
 if __name__ == '__main__':
